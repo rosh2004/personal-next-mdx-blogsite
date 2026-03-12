@@ -1,18 +1,26 @@
 import Link from "next/link";
-import { FaYoutube, FaTwitter, FaGithub, FaLaptop } from "react-icons/fa";
 
 export default function Navbar() {
   return (
-    <nav className="bg-slate-600 p-4 sticky top-0 drop-shadow-xl z-10">
-      <div className="md:px-6 prose prose-xl mx-auto flex justify-between flex-col sm:flex-row">
-        <h1 className="text-3xl font-bold text-white grid place-content-center mb-2 md:mb-0">
-          <Link
-            href="https://www.roshaantech.com"
-            className="text-white/90 no-underline hover:text-white"
-          >
+    <nav className="nav-bar sticky top-0 z-10">
+      <div className="max-w-3xl mx-auto flex items-center justify-between py-3.5 px-4 md:px-6">
+        <Link
+          href="https://www.roshaantech.com"
+          className="group flex items-center gap-2 no-underline"
+        >
+          <span className="font-mono text-xs select-none text-secondary/60 group-hover:text-secondary transition-colors duration-200">
+            ~/
+          </span>
+          <span className="font-fraunces text-xl font-bold tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary">
             Roshaan Siddiqui
-          </Link>
-        </h1>
+          </span>
+        </Link>
+        <Link
+          href="/"
+          className="font-outfit text-sm font-medium text-muted hover:text-primary transition-colors duration-200 no-underline"
+        >
+          Blog
+        </Link>
       </div>
     </nav>
   );

@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter } from 'next/font/google'
+import { Fraunces, Outfit } from "next/font/google";
 import Navbar from "./components/Navbar";
 
-const inter = Inter({
-  subsets: ['latin'],
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
 });
 
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Rosh's Blog",
@@ -21,10 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased dark:bg-slate-800`}
+        className={`${fraunces.variable} ${outfit.variable} font-outfit antialiased bg-background text-foreground`}
       >
+        <div className="grain-overlay" aria-hidden="true" />
         <Navbar />
-        <main className="px-4 md:px-6 prose prose-xl prose-slate dark:prose-invert mx-auto">
+        <main className="relative z-[1] px-4 md:px-6 prose prose-lg mx-auto max-w-3xl">
           {children}
         </main>
       </body>

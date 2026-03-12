@@ -13,10 +13,16 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        "section-bg": "var(--section-bg)",
+        muted: "var(--muted)",
+      },
+      fontFamily: {
+        fraunces: ["var(--font-fraunces)", "Georgia", "serif"],
+        outfit: ["var(--font-outfit)", "system-ui", "sans-serif"],
       },
     },
   },
-  plugins: [
-    typography, aspectRatio
-  ],
+  plugins: [typography, aspectRatio],
 } satisfies Config;

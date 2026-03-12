@@ -1,50 +1,88 @@
-import PostListItem from '@/app/components/PostListItem';
-import { getPostsMeta } from '@/lib/posts';
-import Link from 'next/link';
-import React from 'react'
+import PostListItem from "@/app/components/PostListItem";
+import { getPostsMeta } from "@/lib/posts";
+import Link from "next/link";
+import React from "react";
 
 type Props = {
   params: Promise<{
-    tag: string
-  }>
-}
+    tag: string;
+  }>;
+};
 
 export const revalidate = 86400;
 
-export async function generateStaticParams(){
+export async function generateStaticParams() {
   const posts = await getPostsMeta();
 
-  if(!posts) return [];
-  const tags = new Set(posts.map(post => post.tags).flat());
+  if (!posts) return [];
+  const tags = new Set(
+    posts
+      .map((post) => post.tags ?? [])
+      .flat()
+      .filter(Boolean)
+  );
 
-  return Array.from(tags).map((tag) => ({tag}))
+  return Array.from(tags).map((tag) => ({ tag }));
 }
 
-export async function generateMetadata({params}: Props){
+export async function generateMetadata({ params }: Props) {
   const { tag } = await params;
   return {
-    title: `Posts about ${tag}`
-  }
+    title: `Posts about ${tag}`,
+  };
 }
 
-export default async function page({params}: Props) {
+export default async function page({ params }: Props) {
   const { tag } = await params;
   const posts = await getPostsMeta();
-  if (!posts) return <p className='mt-10 text-center'>No posts with {tag} found</p>;
-  const renderedPosts = posts.filter(post => post.tags.includes(tag)).map(post => (
-    <PostListItem key={post.id} post={post} />
-  ));
+  if (!posts)
+    return (
+      <p className="mt-10 text-center text-muted">
+        No posts with {tag} found
+      </p>
+    );
 
-  return !renderedPosts.length ?  (
-    <div className='text-center'>
-      <p className='mt-10'>No post found for the keyword</p>
-      <Link href="/">◀ Back to home</Link>
-    </div>
-  ):
-  (<section className="mt-6 mx-auto max-w-2xl">
-    <h2 className="text-4xl font-bold dark:text-white/90">Blog</h2>
-    <ul className="w-full">
-      {renderedPosts}
-    </ul>
-  </section>)
+  const renderedPosts = posts
+    .filter((post) => post.tags?.includes(tag))
+    .map((post, i) => <PostListItem key={post.id} post={post} index={i} />);
+
+  if (!renderedPosts.length) {
+    return (
+      <div className="text-center not-prose animate-fade-up">
+        <p className="mt-10 text-muted">
+          No posts found for &ldquo;{tag}&rdquo;
+        </p>
+        <Link href="/" className="back-link justify-center mt-2">
+          &larr; Back to home
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <section className="mt-8 mx-auto max-w-2xl not-prose animate-fade-up">
+      <Link href="/" className="back-link mb-6 inline-flex">
+        &larr; Back to home
+      </Link>
+
+      <div className="flex items-center gap-3 mb-8">
+        <div
+          className="w-1 h-8 rounded-full"
+          style={{
+            background:
+              "linear-gradient(180deg, var(--primary), var(--secondary))",
+          }}
+        />
+        <div>
+          <p className="section-label m-0">Tagged</p>
+          <h2 className="font-fraunces text-3xl font-bold m-0 leading-none text-foreground">
+            {tag}
+          </h2>
+        </div>
+      </div>
+      <ul className="w-full list-none p-0 m-0 flex flex-col gap-4">
+        {renderedPosts}
+      </ul>
+    </section>
+  );
 }
