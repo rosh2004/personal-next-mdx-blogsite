@@ -45,10 +45,10 @@ export default async function page({ params }: Props) {
   return (
     <div className="animate-fade-up">
       <p className="not-prose mt-6 mb-8">
-        <Link href="/" className="back-link">
           <span className="transition-transform duration-200 inline-block group-hover:-translate-x-1">
             &larr;
           </span>
+        <Link href="/" className="back-link">
           Back to home
         </Link>
       </p>

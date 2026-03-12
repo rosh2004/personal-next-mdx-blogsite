@@ -111,16 +111,6 @@ body {
   animation: gradient-shift 4s ease infinite;
 }
 
-/* ─── Profile image ─── */
-.profile-img {
-  border-radius: 50%;
-  border: 3px solid var(--primary);
-  box-shadow:
-    0 0 0 6px var(--background),
-    0 0 24px 4px var(--glow),
-    0 0 48px 8px rgba(7, 160, 178, 0.12);
-}
-
 /* ─── Prose customization ─── */
 .prose {
   color: var(--foreground);
@@ -133,7 +123,6 @@ body {
 .prose a {
   color: var(--primary) !important;
   text-decoration: underline;
-  text-decoration-color: var(--secondary) !important;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
@@ -175,11 +164,6 @@ body {
 
 .prose thead {
   color: var(--foreground) !important;
-}
-
-.prose img {
-  border-radius: 12px;
-  border: 1px solid var(--border);
 }
 
 /* ─── Navbar ─── */

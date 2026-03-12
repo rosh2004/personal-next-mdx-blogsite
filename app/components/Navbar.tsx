@@ -19,7 +19,7 @@ export default function Navbar() {
           href="/"
           className="font-outfit text-sm font-medium text-muted hover:text-primary transition-colors duration-200 no-underline"
         >
-          Blog
+          Blogs
         </Link>
       </div>
     </nav>
