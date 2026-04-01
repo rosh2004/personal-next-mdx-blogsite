@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Fraunces, Outfit } from "next/font/google";
 import Navbar from "./components/Navbar";
+import { Analytics } from "@vercel/analytics/next"
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -44,6 +45,7 @@ export default function RootLayout({
             &larr; Back to roshaantech.com
           </a>
         </footer>
+        <Analytics />
       </body>
     </html>
   );

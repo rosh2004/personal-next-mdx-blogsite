@@ -10,6 +10,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "highlight.js": "^11.10.0",
     "next": "15.4.10",
     "next-mdx-remote": "^6.0.0",
