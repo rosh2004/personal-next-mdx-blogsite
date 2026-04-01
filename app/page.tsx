@@ -21,6 +21,9 @@ export default function Home() {
             Blogs
           </span>
         </h1>
+        <p className="text-sm text-muted-foreground/60 mt-3 mb-0">
+          These are mostly written with AI — I often just extract what I learn with Claude and share it here.
+        </p>
       </div>
       <Posts />
     </div>

@@ -35,6 +35,15 @@ export default function RootLayout({
         <main className="relative z-[1] px-4 md:px-6 prose prose-lg mx-auto max-w-3xl">
           {children}
         </main>
+        <footer className="relative z-[1] mt-16 mb-8 text-center">
+          <div className="gradient-line max-w-3xl mx-auto mb-6" />
+          <a
+            href="https://www.roshaantech.com"
+            className="font-outfit text-sm text-muted hover:text-primary transition-colors duration-200 no-underline"
+          >
+            &larr; Back to roshaantech.com
+          </a>
+        </footer>
       </body>
     </html>
   );
